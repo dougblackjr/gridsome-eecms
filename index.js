@@ -8,7 +8,4 @@ const { fetchEntries, fetchCategories, fetchNav } = require('./bones');
   console.log('Entries:', entries.length);
   console.log('Categories:', categories.length);
   console.log('Navigation:', nav.length);
-
-  // Optional: Write to local JSON files for Gridsome
-  // fs.writeFileSync('./static/entries.json', JSON.stringify(entries, null, 2));
 })();

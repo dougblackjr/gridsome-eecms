@@ -1,9 +1,16 @@
-const axios = require('axios');
-
 async function get(url, params = {}) {
   try {
-    const response = await axios.get(url, { params });
-    return response.data;
+    // Convert params object to query string
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
+
+    const response = await fetch(fullUrl);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
   } catch (error) {
     console.error(`Fetch error for ${url}:`, error.message);
     return null;
